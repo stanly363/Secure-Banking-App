@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+</head>
+<body>
+  <h1>Welcome to the Admin Page, {{ name }}!</h1>
+
+  <form action="{{ url_for('admin_dashboard') }}" method="post">
+      {{ search_user_form.hidden_tag() }}
+      <label for="search_search_username">Search User by Username:</label>
+      <!-- Notice the name attribute includes the prefix 'search-' -->
+      <input type="text" id="search_search_username" name="search-search_username" required>
+      <button type="submit" name="search_user" value="True">Search</button>
+  </form>
+
+
+
+  <form action="{{ url_for('admin_dashboard') }}" method="post">
+      {{ create_user_form.hidden_tag() }}
+      <label for="create-new_username">Username:</label>
+      <input type="text" id="create-new_username" name="create-new_username" required>
+
+      <label for="create-new_password">Password:</label>
+      <input type="password" id="create-new_password" name="create-new_password" required>
+
+      <label for="create-new_recovery_code">Recovery Code:</label>
+      <input type="text" id="create-new_recovery_code" name="create-new_recovery_code" required>
+
+      <label for="create-new_role">Role:</label>
+      <select id="create-new_role" name="create-new_role" required>
+          <option value="user">user</option>
+          <option value="admin">admin</option>
+      </select>
+
+      <button type="submit" name="create-create_user" value="True">Create User</button>
+  </form>
+
+  <!-- Form for deleting a user -->
+  <form action="{{ url_for('admin_dashboard') }}" method="post">
+      {{ delete_user_form.hidden_tag() }}
+      <label for="delete-username_to_delete">Username:</label>
+      <input type="text" id="delete-username_to_delete" name="delete-username_to_delete" required>
+      <button type="submit" name="delete-delete_user" value = "True">Delete User</button>
+  </form>
+
+
+  <!-- Link to view security information (logs) -->
+  <a href="{{ url_for('log_history') }}">View Security Logs</a>
+  
+  <!-- Logout button -->
+  <form action="{{ url_for('logout_admin') }}" method="post">
+      {{ logout_form.hidden_tag() }}
+      <button type="submit" name="logout">Logout</button>
+  </form>
+</body>
+</html>
+

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta viewport="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+</head>
+<body>
+  <h1>Welcome, {{ name }}!</h1>
+  <p>Your bank balance is: ${{ bank_balance }}</p>
+  <p>This is your dashboard. Update balance or view transaction history below.</p>
+
+  
+
+  <!-- Deposit form -->
+  <form action="{{ url_for('deposit') }}" method="post">
+      {{ form_deposit.hidden_tag() }}
+      <label for="deposit_amount">Deposit Amount:</label>
+      <input type="number" id="deposit_amount" name="deposit_amount" value="0.00" required step="1">
+      <button type="submit">Deposit</button>
+  </form>
+
+  <!-- Withdraw form -->
+  <form action="{{ url_for('withdraw') }}" method="post">
+      {{ form_withdraw.hidden_tag() }}
+      <label for="withdraw_amount">Withdraw Amount:</label>
+      <input type="number" id="withdraw_amount" name="withdraw_amount"  value="0.00" required step="0.01" >
+      <button type="submit">Withdraw</button>
+  </form>
+
+  <!-- Link to view transaction history -->
+  <a href="{{ url_for('transaction_history') }}">View Transaction History</a>
+
+  <!-- Logout button -->
+  <form action="{{ url_for('logout') }}" method="post">
+    {{ form_logout.hidden_tag() }}
+    <button type="submit">Logout</button>
+  </form>
+</body>
+</html>
+

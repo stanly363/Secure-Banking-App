@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information</title>
+</head>
+<body>
+    <h1>User Information</h1>
+    {% if user_info %}
+        <p>Username: {{ user_info['Username'] }}</p>
+        <p>One-time password: {{ user_info['Password'] }} <!-- Ensure 'Password' is correct and encrypted if shown! --></p>
+        <p>Recovery code: {{ user_info['Recovery code'] }}</p>
+        <p>Bank balance: {{ user_info['Bank balance'] }}</p>
+        <p>Role: {{ user_info['Role'] }}</p>
+        <!-- Link to view user log history -->
+        <a href="{{ url_for('user_log_history', username=user_info['Username']) }}">View Log History</a>
+    {% else %}
+        <p>No user information available.</p>
+    {% endif %}
+</body>
+</html>
